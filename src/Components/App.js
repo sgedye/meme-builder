@@ -12,7 +12,6 @@ function App() {
     setIsModalOpen(true)
   }
 
-
   return (
     <div id="app">
       <Instructions />

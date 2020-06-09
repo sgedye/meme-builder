@@ -1,6 +1,6 @@
 {
   "name": "meme-builder",
-  "homepage": "https://sgedye.github.io/sgedye/meme-builder",
+  "homepage": "https://sgedye.github.io/meme-builder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

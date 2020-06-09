@@ -30,11 +30,22 @@ const OrderedList = styled.ol`
   font-size: 1.4em;
   padding: 0 0 0 10%;
   text-align: left;
+  line-height: 2em;
   li {
+    margin: 20px 30px;
     counter-increment: count;
   }
   li::before {
     content: counter(count) ". ";
+    position: absolute;
+    left: 25px;
+    // height: 30px;
+    transform: rotate(-5deg);
+    background-color: black;
+    color: gold;
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 1px 2px 5px gold;
     font-weight: bold;
   }
 `
