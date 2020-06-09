@@ -14,3 +14,69 @@ body {
   padding: 10px;
   overflow: auto;
 }
+
+.ReactModal__Overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ReactModal__Content {
+  position: relative;
+  width: 80%;
+  padding: 10px;
+  background-color: palegoldenrod;
+  text-align: center;
+}
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+.modal-form > label { text-align: left; }
+.modal-form > input {
+  display: block;
+  margin: 0 0 10px 0;
+}
+.meme-image { position: relative; }
+.meme-image > img { width: 80%; }
+#meme-text-top, #meme-text-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 10px;
+  font-size: 2em;
+  color: white;
+  text-shadow: 1px 1px black, -1px -1px 10px black;
+  text-align: center;
+}
+#meme-text-top { top: 20px; }
+#meme-text-bottom { bottom: 20px; }
+
+.modal-download {
+  display: block;
+  margin: 20px auto;
+}
+.modal-close {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  font-weight: 900;
+  border-radius: 50%;
+  top: 10px;
+  right: 10px;
+}
+@media screen and (min-width: 600px) {
+  .ReactModal__Overlay {
+    left: 25% !important;
+  }
+  #meme-text-top, #meme-text-bottom {
+    padding: 20px;
+  }
+
+  /* .modal-form { flex-direction: row; } */
+  /* .modal-form > input {
+    display: inline-block;
+  } */
+}

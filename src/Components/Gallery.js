@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
-import Modal from 'react-modal'
+import React from 'react'
 import styled from 'styled-components'
 
 import Image from './Image'
-// import { Modal, ModalHeader, ModalBody, FormGroup, Label, NavbarBrand } from 'reactstrap';
-Modal.setAppElement('#root')
 
 const Container = styled.main`
   display: inline-block;
@@ -28,10 +25,7 @@ const Pictures = styled.div`
   justify-content: space-evenly;
 `
 
-
-function Gallery() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [memeUrl, setMemeUrl] = useState('')
+function Gallery(props) {
 
   const imageData = [
     { id:1, src:'http://rtgphotography.com.au/img/galleries/cuba.jpg' },
@@ -43,41 +37,22 @@ function Gallery() {
     { id:7, src:'http://rtgphotography.com.au/img/galleries/black&whites.jpg' }
   ]
 
-  const imageClicked = id => {
-    setMemeUrl(id)
-    setIsModalOpen(true)
-  }
-
   const IMAGE_LIST = imageData.map(img => {
     const imgId = 'img_' + img.id
     const altTag = img.src.replace(/.*\/(\w+[-|&]?\w+)\.jpg/, (_, $1) => $1)
     return (
-      <Image key={imgId} id={imgId} src={img.src} alt={altTag} onClick={() => imageClicked(img.src)} />
+      <Image key={imgId} id={imgId} src={img.src} alt={altTag} onClick={() => props.imageClicked(img.src)} />
     )
   })
   return (
     <Container>
       <Title>Image Gallery</Title>
       <Pictures id="gallery-body">{IMAGE_LIST}</Pictures>
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
-        style={{
-          overlay: { backgroundColor: "grey" },
-          content: { color: "purple" },
-        }}
-      >
-        <h1>MOdel</h1>
-        <p>modal stuff</p>
-        <img src={memeUrl} alt="meme to create" width="80%" />
-        <button onClick={() => setIsModalOpen(false)}>Close</button>
-      </Modal>
     </Container>
   )
 }
 
 export default Gallery
-
 
 
 

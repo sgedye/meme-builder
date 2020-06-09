@@ -7,12 +7,10 @@ const StyledImage = styled.img`
   margin: 10px;
 `
 
-function Image(props) {
+export default function Image(props) {
   return (
     <div>
       <StyledImage id={props.id} src={props.src} alt={props.alt} onClick={props.onClick} />
     </div>
   )
 }
-
-export default Image
