@@ -15,6 +15,7 @@ body {
   overflow: auto;
 }
 
+/* MODAL STYLES */
 .ReactModal__Overlay {
   display: flex;
   align-items: center;
@@ -38,18 +39,20 @@ body {
   display: block;
   margin: 0 0 10px 0;
 }
-.meme-image { position: relative; }
-.meme-image > img { width: 80%; }
+.meme-image-div { position: relative; }
+.meme-image-div > img { width: 80%; }
 #meme-text-top, #meme-text-bottom {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 10%;
+  right: 10%;
   margin: 0;
   padding: 10px;
+  font-family: Impact, sans-serif;
   font-size: 2em;
   color: white;
   text-shadow: 1px 1px black, -1px -1px 10px black;
   text-align: center;
+  cursor: pointer;
 }
 #meme-text-top { top: 20px; }
 #meme-text-bottom { bottom: 20px; }

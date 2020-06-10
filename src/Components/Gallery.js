@@ -46,7 +46,7 @@ function Gallery(props) {
   })
   return (
     <Container>
-      <Title>Image Gallery</Title>
+      <Title id="gallery-title">Image Gallery</Title>
       <Pictures id="gallery-body">{IMAGE_LIST}</Pictures>
     </Container>
   )

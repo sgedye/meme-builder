@@ -58,17 +58,10 @@ function Instructions() {
       <p>Create your own meme by following these easy steps.</p>
       <OrderedList>
         <li>Click on an image</li>
-        <li>Write in your text</li>
-        <li>Something else</li>
-        <li>Make these fancy using css counting...</li>
+        <li>Write your text</li>
+        <li>Position text with mouse</li>
+        <li>Click download to save</li>
       </OrderedList>
-      <p>
-        Lorem ipsum............abs blah blah blah; `npm audit fix` to
-        fix them, or `npm audit` for details Shauns-MBP:meme-builder sgedye$ psd
-        bash: psd: command not found Shauns-MBP:meme-builder sgedye$ pwd
-        /Users/sgedye/Documents/_Entrepreneurship/projects/react/meme-builder
-        Shauns-MBP:meme-builder sgedye$
-      </p>
     </Container>
   )
 }
