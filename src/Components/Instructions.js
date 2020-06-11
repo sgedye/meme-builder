@@ -53,7 +53,7 @@ const OrderedList = styled.ol`
 function Instructions() {
   return (
     <Container>
-      <h2>Build Your Own Meme</h2>
+      <h2 style={{"fontSize": "2.2em"}}>Build Your Own Meme</h2>
       <hr />
       <p>Create your own meme by following these easy steps.</p>
       <OrderedList>

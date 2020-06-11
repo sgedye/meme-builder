@@ -1,18 +1,44 @@
 import React, { useState } from "react"
+import styled from "styled-components"
 
 import Modal from "react-modal"
 Modal.setAppElement("#root")
 
+
+const FontSizing = styled.div`
+  display: inline-block;
+  width: 300px;
+  button {
+    display: inline-block;
+    width: 50px;
+  }
+  p {
+    display: inline-block;
+    width: 100px;
+  }
+`
+
+
+
+
 function Overlay(props) {
 
-  const [offsetX, setOffsetX] = useState(0)
-  const [offsetY, setOffsetY] = useState(0)
+  // const [offsetX, setOffsetX] = useState(0)
+  // const [offsetY, setOffsetY] = useState(0)
 
 
   const handleTyping = (element, value) => {
     document.getElementById(element).textContent = value
   }
 
+  const adjustFontSize = (element, e) => {
+    e.preventDefault()
+    const adjustment = e.target.value
+    const fontToAdjust = document.getElementById(element)
+    let styleFont = parseFloat(window.getComputedStyle(fontToAdjust, null).getPropertyValue('font-size'))
+    styleFont += (adjustment === '+') ? 2 : -2
+    fontToAdjust.style.fontSize = `${styleFont}px`
+  }
 
 
 
@@ -136,6 +162,11 @@ function Overlay(props) {
           placeholder="Add text to the top"
           onChange={(e) => handleTyping("meme-text-top", e.target.value)}
         />
+        <FontSizing>
+          <button value="+" onClick={(e) => adjustFontSize("meme-text-top", e)}><i class="fa fa-chevron-up"></i></button>
+          <p>Font Slize</p>
+          <button value="-" onClick={(e) => adjustFontSize("meme-text-top", e)}>Down</button>
+        </FontSizing>
         <label htmlFor="bottomLine">Bottom Line:</label>
         <input
           type="text"
@@ -143,6 +174,11 @@ function Overlay(props) {
           placeholder="Add text to the bottom"
           onChange={(e) => handleTyping("meme-text-bottom", e.target.value)}
         />
+        <FontSizing>
+          <button value="+" onClick={(e) => adjustFontSize("meme-text-bottom", e)}>UP</button>
+          <p>Font Slize</p>
+          <button value="-" onClick={(e) => adjustFontSize("meme-text-bottom", e)}>Down</button>
+        </FontSizing>
       </form>
       <div className="meme-image-div">
         <img id="meme-image" src={props.memeUrl} alt="meme to create" />

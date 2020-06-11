@@ -18,6 +18,14 @@ const Title = styled.h1`
   margin: 20px 0;
   width: 100%;
   text-align: center;
+  font-size: 3em;
+  text-shadow: -1px -1px floralwhite, 3px 5px 5px floralwhite;
+}
+
+
+
+
+
 `
 const Pictures = styled.div`
   display: flex;
