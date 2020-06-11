@@ -18,24 +18,24 @@ const Adjustments = styled.div`
 
 function EntryInput(props) {  
   return (
-    <div id="entryGrid">
+    <div class="entryGrid">
       <label htmlFor={props.inputId}>{props.children}</label>
       <input
         type="text"
         id={props.inputId}
         placeholder="Add text to the top"
-        onChange={(e) => props.handleTextInput(props.outputId, e.target.value)}
+        onChange={(e) => props.handleTextInput(props.outputId, e.target)}
       />
       <Adjustments id="font-sizing">
         <button
-          value="+"
+          value="font++"
           onClick={(e) => props.handleFontSize(props.outputId, e)}
         >
           <FaChevronUp />
         </button>
         <p>Font Size</p>
         <button
-          value="-"
+          value="font--"
           onClick={(e) => props.handleFontSize(props.outputId, e)}
         >
           <FaChevronDown />
@@ -43,18 +43,25 @@ function EntryInput(props) {
       </Adjustments>
       <Adjustments id="rotation">
         <button
-          value="0"
+          value="rRight"
           onClick={(e) => props.handleRotation(props.outputId, e)}
         >
           <GiAnticlockwiseRotation />
         </button>
         <p>Rotate</p>
         <button
-          value="3"
+          value="rLeft"
           onClick={(e) => props.handleRotation(props.outputId, e)}
         >
           <GiClockwiseRotation />
         </button>
+      </Adjustments>
+      <Adjustments>
+        <input
+          id={`${props.inputId}-check`}
+          type="checkbox"
+          onClick={e => props.handleCapitalise(props.outputId, e.target.checked)}
+        />
       </Adjustments>
     </div>
   )

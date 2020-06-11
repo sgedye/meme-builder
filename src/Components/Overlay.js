@@ -12,42 +12,57 @@ Modal.setAppElement("#root")
 
 function Overlay(props) {
 
+  const [rotateTop, setRotateTop] = useState(0)
+  const [rotateBottom, setRotateBottom] = useState(0)
   // const [offsetX, setOffsetX] = useState(0)
   // const [offsetY, setOffsetY] = useState(0)
 
 
-  const textInput = (element, value) => {
-    document.getElementById(element).textContent = value
+  const textInput = (element, target) => {
+    document.getElementById(element).textContent = target.value
+    const checkBox = document.getElementById(target.id + "-check")
+    checkBox.checked = false
   }
 
   const adjustFontSize = (textToAdjust, adjustor) => {
     let styleFont = parseFloat(
       window.getComputedStyle(textToAdjust, null).getPropertyValue("font-size")
     )
-    styleFont += adjustor === "+" ? 2 : -2
+    styleFont += adjustor === "font++" ? 2 : -2
     textToAdjust.style.fontSize = `${styleFont}px`
   }
+
   const adjustRotation = (textToAdjust, adjustor) => {
-    let rotation = window.getComputedStyle(textToAdjust, null).getPropertyValue("transform")
-    if (rotation === 'none') {
-      rotation = 'rotate(10deg)'
+    if (textToAdjust.id === "meme-text-top") {
+      adjustor === "rLeft"
+        ? setRotateTop((prevState) => prevState + 10)
+        : setRotateTop((prevState) => prevState - 10)
+      textToAdjust.style.transform = `rotate(${rotateTop}deg)`
+    } else {
+      adjustor === "rLeft"
+        ? setRotateBottom((prevState) => prevState + 10)
+        : setRotateBottom((prevState) => prevState - 10)
+      textToAdjust.style.transform = `rotate(${rotateBottom}deg)`
     }
-    console.log(rotation, typeof(rotation))
   }
 
-  // transform: rotate(10deg);
-
-
+  const changeCase = (element, checked) => {
+    const textToAdjust = document.getElementById(element)
+    textToAdjust.textContent = checked 
+      ? textToAdjust.textContent.toUpperCase()
+      : textToAdjust.textContent.toLowerCase()
+  }
   const adjustLine = (element, e) => {
     e.preventDefault()
     const adjustor =
       e.target.value ||
       e.target.parentElement.value ||
       e.target.parentElement.parentElement.value
+    console.log(adjustor)
     const textToAdjust = document.getElementById(element)
-    if (adjustor === '+' || adjustor === '-') {
+    if (adjustor === 'font++' || adjustor === 'font--') {
       adjustFontSize(textToAdjust, adjustor)
-    } else if (adjustor === '0' || adjustor === '3') {
+    } else if (adjustor === 'rLeft' || adjustor === 'rRight') {
       adjustRotation(textToAdjust, adjustor)
     }
   }
@@ -167,6 +182,7 @@ function Overlay(props) {
           handleTextInput={textInput}
           handleFontSize={adjustLine}
           handleRotation={adjustLine}
+          handleCapitalise={changeCase}
         >
           Top Line
         </EntryInput>
@@ -176,6 +192,7 @@ function Overlay(props) {
           handleTextInput={textInput}
           handleFontSize={adjustLine}
           handleRotation={adjustLine}
+          handleCapitalise={changeCase}
         >
           Bottom Line
         </EntryInput>

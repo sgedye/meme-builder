@@ -84,7 +84,7 @@ body {
   } */
 }
 
-#entryGrid {
+.entryGrid {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr;
@@ -93,9 +93,9 @@ body {
     "input"
     "fontSize";
 }
-#entryGrid > label { grid-area: label; }
-#entryGrid > input { grid-area: input; }
-#entryGrid > #font-sizing { grid-area: fontSize; }
+.entryGrid > label { grid-area: label; }
+.entryGrid > input { grid-area: input; }
+.entryGrid > #font-sizing { grid-area: fontSize; }
 
 @media screen and (min-width: 600px) {
   #entryGrid {
