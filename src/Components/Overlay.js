@@ -1,14 +1,10 @@
 import React, { useState } from "react"
+import Modal from "react-modal"
+import { IoMdCloseCircle } from "react-icons/io"
+
 import EntryInput from "./EntryInput"
 
-import Modal from "react-modal"
-
 Modal.setAppElement("#root")
-
-
-
-
-
 
 function Overlay(props) {
 
@@ -52,19 +48,64 @@ function Overlay(props) {
       ? textToAdjust.textContent.toUpperCase()
       : textToAdjust.textContent.toLowerCase()
   }
+
   const adjustLine = (element, e) => {
     e.preventDefault()
     const adjustor =
       e.target.value ||
       e.target.parentElement.value ||
       e.target.parentElement.parentElement.value
-    console.log(adjustor)
     const textToAdjust = document.getElementById(element)
     if (adjustor === 'font++' || adjustor === 'font--') {
       adjustFontSize(textToAdjust, adjustor)
     } else if (adjustor === 'rLeft' || adjustor === 'rRight') {
       adjustRotation(textToAdjust, adjustor)
     }
+  }
+  
+  function drawText(canvas, ctx, textId) {
+    const element = document.getElementById(textId)
+    const fontSize = parseFloat(
+      window.getComputedStyle(element, null).getPropertyValue("font-size")
+    )
+    const rotation = Number(element.style.transform.replace(/[^-0-9]/g, ""))
+    ctx.font = `${fontSize}px Impact`
+    ctx.fillStyle = "white"
+    ctx.shadowColor = "black"
+    ctx.shadowBlur = 6
+    ctx.translate(canvas.width / 2, canvas.height / 2)
+    ctx.rotate((rotation * Math.PI) / 180)
+    ctx.translate(-canvas.width / 2, -canvas.height / 2)
+    ctx.textAlign = "center"
+    
+    const checkBox = textId === "meme-text-top"
+      ? document.getElementById(`topLine-check`)
+      : document.getElementById(`bottomLine-check`) 
+    const content = checkBox.checked
+      ? element.textContent.toUpperCase()
+      : element.textContent
+    textId === "meme-text-top"
+      ? ctx.fillText(content, canvas.width / 2, 100)
+      : ctx.fillText(content, canvas.width / 2, canvas.height - 100)
+  }
+
+  function createCanvas(e) {
+    e.preventDefault()
+    const canvas = document.getElementById('memeToDownload')
+    const ctx = canvas.getContext("2d")
+    
+    const img = document.getElementById("meme-image")
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+    
+    drawText(canvas, ctx, "meme-text-top")
+    drawText(canvas, ctx, "meme-text-bottom")
+
+    document.getElementById("gallery-title").textContent = "Your Personal Meme"
+    document.getElementById("gallery-body").style.display = "none"
+    canvas.style.display = "block"
+    document.getElementById('return-to-gallery').style.display = "block"
+
+    props.setIsModalOpen(false)
   }
 
 
@@ -174,7 +215,7 @@ function Overlay(props) {
         // content: { color: "purple" },
       }}
     >
-      <h1>Create a Meme</h1>
+      <h1 id="create-meme">Create a Meme</h1>
       <form className="modal-form">
         <EntryInput
           inputId="topLine"
@@ -185,16 +226,6 @@ function Overlay(props) {
           handleCapitalise={changeCase}
         >
           Top Line
-        </EntryInput>
-        <EntryInput
-          inputId="bottomLine"
-          outputId="meme-text-bottom"
-          handleTextInput={textInput}
-          handleFontSize={adjustLine}
-          handleRotation={adjustLine}
-          handleCapitalise={changeCase}
-        >
-          Bottom Line
         </EntryInput>
       </form>
       <div className="meme-image-div">
@@ -208,13 +239,25 @@ function Overlay(props) {
           className="meme-text" /*onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove}*/
         ></p>
       </div>
-      <button className="modal-download">download</button>
-      <button
+      <form className="modal-form">
+        <EntryInput
+          inputId="bottomLine"
+          outputId="meme-text-bottom"
+          handleTextInput={textInput}
+          handleFontSize={adjustLine}
+          handleRotation={adjustLine}
+          handleCapitalise={changeCase}
+        >
+          Bottom Line
+        </EntryInput>
+      </form>
+      <button className="modal-download" onClick={(e) => createCanvas(e)}>
+        download
+      </button>
+      <IoMdCloseCircle
         className="modal-close"
         onClick={() => props.setIsModalOpen(false)}
-      >
-        x
-      </button>
+      />
     </Modal>
   )
 }

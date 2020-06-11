@@ -6,12 +6,11 @@ import Image from './Image'
 const Container = styled.main`
   display: inline-block;
   width: 100vw;
-  min-height: auto;
+  height: auto;
   margin: 0 auto;
   @media screen and (min-width: 600px) {
-    width: 75vw;
-    min-height: 100vh;
-    margin-left: 25vw;
+    width: 70vw;
+    margin-left: 30vw;
   }
 `
 const Title = styled.h1`
@@ -20,12 +19,6 @@ const Title = styled.h1`
   text-align: center;
   font-size: 3em;
   text-shadow: -1px -1px floralwhite, 3px 5px 5px floralwhite;
-}
-
-
-
-
-
 `
 const Pictures = styled.div`
   display: flex;
@@ -33,7 +26,25 @@ const Pictures = styled.div`
   justify-content: space-evenly;
 `
 
+const Canvas = styled.canvas`
+  display: none;
+  margin: 20px auto;
+`
+
+const Button = styled.button`
+  display: none;
+  margin: 0 auto;
+`
+
 function Gallery(props) {
+  
+  const returnToGallery = () => {
+    console.log(document.getElementById('memeToDownload'))
+    document.getElementById("gallery-title").textContent = "Image Gallery"
+    document.getElementById("gallery-body").style.display = "flex"
+    document.getElementById("return-to-gallery").style.display = "none"
+    document.getElementById("memeToDownload").style.display = "none"
+  }
 
   const imageData = [
     { id:1, src:'http://rtgphotography.com.au/img/galleries/cuba.jpg' },
@@ -53,9 +64,11 @@ function Gallery(props) {
     )
   })
   return (
-    <Container>
+    <Container id="gallery">
       <Title id="gallery-title">Image Gallery</Title>
       <Pictures id="gallery-body">{IMAGE_LIST}</Pictures>
+      <Canvas id="memeToDownload" width="600" height="400"></Canvas>
+      <Button id="return-to-gallery" onClick={returnToGallery}>Return to Gallery</Button>
     </Container>
   )
 }

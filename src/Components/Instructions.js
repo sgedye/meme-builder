@@ -19,7 +19,7 @@ const Container = styled.aside`
   }
 
   @media screen and (min-width: 600px) {
-    width: 25vw;
+    width: 30vw;
     height: 100vh;
   }
 `
@@ -32,14 +32,13 @@ const OrderedList = styled.ol`
   text-align: left;
   line-height: 2em;
   li {
-    margin: 20px 30px;
+    margin: 20px;
     counter-increment: count;
   }
   li::before {
     content: counter(count) ". ";
     position: absolute;
     left: 25px;
-    // height: 30px;
     transform: rotate(-5deg);
     background-color: black;
     color: gold;
@@ -53,14 +52,17 @@ const OrderedList = styled.ol`
 function Instructions() {
   return (
     <Container>
-      <h2 style={{"fontSize": "2.2em"}}>Build Your Own Meme</h2>
+      <h2 style={{ fontSize: "2.2em" }}>Build Your Own Meme</h2>
       <hr />
       <p>Create your own meme by following these easy steps.</p>
       <OrderedList>
         <li>Click on an image</li>
         <li>Write your text</li>
-        <li>Position text with mouse</li>
-        <li>Click download to save</li>
+        <li>Adjust the settings</li>
+        <li>Click download</li>
+        <li>Right click on your meme</li>
+        <li>Select "Save Image As..."</li>
+        <li>Click "Return to Gallery" to create another meme</li>
       </OrderedList>
     </Container>
   )
