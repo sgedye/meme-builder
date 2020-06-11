@@ -1,22 +1,11 @@
 import React, { useState } from "react"
-import styled from "styled-components"
+import EntryInput from "./EntryInput"
 
 import Modal from "react-modal"
+
 Modal.setAppElement("#root")
 
 
-const FontSizing = styled.div`
-  display: inline-block;
-  width: 300px;
-  button {
-    display: inline-block;
-    width: 50px;
-  }
-  p {
-    display: inline-block;
-    width: 100px;
-  }
-`
 
 
 
@@ -27,17 +16,40 @@ function Overlay(props) {
   // const [offsetY, setOffsetY] = useState(0)
 
 
-  const handleTyping = (element, value) => {
+  const textInput = (element, value) => {
     document.getElementById(element).textContent = value
   }
 
-  const adjustFontSize = (element, e) => {
+  const adjustFontSize = (textToAdjust, adjustor) => {
+    let styleFont = parseFloat(
+      window.getComputedStyle(textToAdjust, null).getPropertyValue("font-size")
+    )
+    styleFont += adjustor === "+" ? 2 : -2
+    textToAdjust.style.fontSize = `${styleFont}px`
+  }
+  const adjustRotation = (textToAdjust, adjustor) => {
+    let rotation = window.getComputedStyle(textToAdjust, null).getPropertyValue("transform")
+    if (rotation === 'none') {
+      rotation = 'rotate(10deg)'
+    }
+    console.log(rotation, typeof(rotation))
+  }
+
+  // transform: rotate(10deg);
+
+
+  const adjustLine = (element, e) => {
     e.preventDefault()
-    const adjustment = e.target.value
-    const fontToAdjust = document.getElementById(element)
-    let styleFont = parseFloat(window.getComputedStyle(fontToAdjust, null).getPropertyValue('font-size'))
-    styleFont += (adjustment === '+') ? 2 : -2
-    fontToAdjust.style.fontSize = `${styleFont}px`
+    const adjustor =
+      e.target.value ||
+      e.target.parentElement.value ||
+      e.target.parentElement.parentElement.value
+    const textToAdjust = document.getElementById(element)
+    if (adjustor === '+' || adjustor === '-') {
+      adjustFontSize(textToAdjust, adjustor)
+    } else if (adjustor === '0' || adjustor === '3') {
+      adjustRotation(textToAdjust, adjustor)
+    }
   }
 
 
@@ -83,12 +95,6 @@ function Overlay(props) {
 //       document.onmousemove = null;
 //     }
 //   }
-
-
-
-
-
-
 
 
 
@@ -155,38 +161,43 @@ function Overlay(props) {
     >
       <h1>Create a Meme</h1>
       <form className="modal-form">
-        <label htmlFor="topLine">Top Line:</label>
-        <input
-          type="text"
-          id="topLine"
-          placeholder="Add text to the top"
-          onChange={(e) => handleTyping("meme-text-top", e.target.value)}
-        />
-        <FontSizing>
-          <button value="+" onClick={(e) => adjustFontSize("meme-text-top", e)}><i class="fa fa-chevron-up"></i></button>
-          <p>Font Slize</p>
-          <button value="-" onClick={(e) => adjustFontSize("meme-text-top", e)}>Down</button>
-        </FontSizing>
-        <label htmlFor="bottomLine">Bottom Line:</label>
-        <input
-          type="text"
-          id="topLine"
-          placeholder="Add text to the bottom"
-          onChange={(e) => handleTyping("meme-text-bottom", e.target.value)}
-        />
-        <FontSizing>
-          <button value="+" onClick={(e) => adjustFontSize("meme-text-bottom", e)}>UP</button>
-          <p>Font Slize</p>
-          <button value="-" onClick={(e) => adjustFontSize("meme-text-bottom", e)}>Down</button>
-        </FontSizing>
+        <EntryInput
+          inputId="topLine"
+          outputId="meme-text-top"
+          handleTextInput={textInput}
+          handleFontSize={adjustLine}
+          handleRotation={adjustLine}
+        >
+          Top Line
+        </EntryInput>
+        <EntryInput
+          inputId="bottomLine"
+          outputId="meme-text-bottom"
+          handleTextInput={textInput}
+          handleFontSize={adjustLine}
+          handleRotation={adjustLine}
+        >
+          Bottom Line
+        </EntryInput>
       </form>
       <div className="meme-image-div">
         <img id="meme-image" src={props.memeUrl} alt="meme to create" />
-        <p id="meme-text-top" className="meme-text" /*onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove}*/></p>
-        <p id="meme-text-bottom" className="meme-text" /*onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove}*/></p>
+        <p
+          id="meme-text-top"
+          className="meme-text" /*onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove}*/
+        ></p>
+        <p
+          id="meme-text-bottom"
+          className="meme-text" /*onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove}*/
+        ></p>
       </div>
       <button className="modal-download">download</button>
-      <button className="modal-close" onClick={() => props.setIsModalOpen(false)}>x</button>
+      <button
+        className="modal-close"
+        onClick={() => props.setIsModalOpen(false)}
+      >
+        x
+      </button>
     </Modal>
   )
 }

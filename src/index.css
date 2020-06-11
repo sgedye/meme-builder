@@ -83,3 +83,26 @@ body {
     display: inline-block;
   } */
 }
+
+#entryGrid {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "label"
+    "input"
+    "fontSize";
+}
+#entryGrid > label { grid-area: label; }
+#entryGrid > input { grid-area: input; }
+#entryGrid > #font-sizing { grid-area: fontSize; }
+
+@media screen and (min-width: 600px) {
+  #entryGrid {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "label fontSize"
+      "input fontSize";
+  }
+}
