@@ -8,6 +8,7 @@ const Container = styled.main`
   display: inline-block;
   width: 100vw;
   height: auto;
+  min-height: 100vh;
   margin: 0 auto;
   text-align: center;
   @media screen and (min-width: 600px) {
@@ -16,11 +17,11 @@ const Container = styled.main`
   }
 `
 const Title = styled.h1`
-  margin: 20px 0;
+  margin: 10px 0;
   width: 100%;
   text-align: center;
   font-size: 3em;
-  text-shadow: -1px -1px floralwhite, 3px 5px 5px floralwhite;
+  text-shadow: -1px -1px floralwhite, 3px 4px 6px floralwhite;
 `
 const Refresher = styled.button`
   position: absolute;
@@ -28,18 +29,21 @@ const Refresher = styled.button`
   padding: 5px;
   height: 33px;
   min-width: 40px;
-  background-color: #4f9ab3;
+  background-color: rgb(80,90,150);
+  background: linear-gradient(-80deg, #4f9ab3, rgb(80,90,150));
   border-radius: 20px;
   font-weight: bold;
   font-size: 1.2em;
   right: 20px;
-  top: 40px;
+  top: 30px;
+  box-shadow: inset -2px -1px 4px 3px #333; 
   span { display: none; }
   svg { 
     display: inline;
   }
   @media screen and (min-width: 600px) {
     height: 36px;
+    right: 30px;
     padding: 5px 15px;
     span { display: inline; }
     svg { display: none; }

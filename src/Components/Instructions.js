@@ -6,11 +6,16 @@ const Container = styled.aside`
   display: none; // No mobile instructions !!!
   width: 100vw;
   height: auto;
-  background-color: green;
+  background: rgba(70, 80, 170, 0.7);
   text-align: center;
+  text-shadow: 1px 1px 20px white;
   overflow-wrap: break-word;
+  h2 {
+    font-size: 2.2em;
+    text-shadow: 1px 1px 20px white, -1px 0px white;
+  }
   hr {
-    border: 2px solid lightgreen;
+    border: 2px solid darkblue;
     border-radius: 25px;
     margin: 10px auto;
   }
@@ -53,7 +58,7 @@ const OrderedList = styled.ol`
 function Instructions() {
   return (
     <Container>
-      <h2 style={{ fontSize: "2.2em" }}>Build Your Own Meme</h2>
+      <h2>Build Your Own Meme</h2>
       <hr />
       <p>Create your own meme by following these easy steps.</p>
       <OrderedList>
