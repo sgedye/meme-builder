@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Container = styled.aside`
   position: fixed;
-  display: inline-block;
+  display: none; // No mobile instructions !!!
   width: 100vw;
   height: auto;
   background-color: green;
@@ -19,6 +19,7 @@ const Container = styled.aside`
   }
 
   @media screen and (min-width: 600px) {
+    display: inline-block;
     width: 30vw;
     height: 100vh;
   }

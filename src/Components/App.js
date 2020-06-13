@@ -15,7 +15,9 @@ function App() {
   return (
     <div id="app">
       <Instructions />
-      <Gallery imageClicked={imageClicked} />
+      <Gallery
+        imageClicked={imageClicked}
+      />
       <Overlay
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}

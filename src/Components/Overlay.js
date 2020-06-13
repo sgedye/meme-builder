@@ -14,6 +14,8 @@ function Overlay(props) {
   // const [offsetY, setOffsetY] = useState(0)
 
 
+  document.body.style.position = props.isModalOpen ? 'fixed' : ''
+
   const textInput = (element, target) => {
     document.getElementById(element).textContent = target.value
     const checkBox = document.getElementById(target.id + "-check")
@@ -93,18 +95,20 @@ function Overlay(props) {
     e.preventDefault()
     const canvas = document.getElementById('memeToDownload')
     const ctx = canvas.getContext("2d")
-    
     const img = document.getElementById("meme-image")
+    canvas.width = img.width;
+    canvas.height = img.height;
+
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
     
     drawText(canvas, ctx, "meme-text-top")
     drawText(canvas, ctx, "meme-text-bottom")
 
-    document.getElementById("gallery-title").textContent = "Your Personal Meme"
+    document.getElementById("gallery-title").textContent = "Your Meme"
     document.getElementById("gallery-body").style.display = "none"
     canvas.style.display = "block"
+    document.getElementById('gallery-refresh').style.display = "none"
     document.getElementById('return-to-gallery').style.display = "block"
-
     props.setIsModalOpen(false)
   }
 

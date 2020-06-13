@@ -20,12 +20,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70%;
-  margin-left: 5%;
+  width: 100vw;
 }
 .ReactModal__Content {
   position: relative;
   width: 80%;
+  max-height: 100%;
   padding: 10px;
   background-color: palegoldenrod;
   text-align: center;
@@ -33,7 +33,7 @@ body {
 .modal-form {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 90%;
   margin: auto;
 }
 .modal-form > label { text-align: left; }
@@ -41,11 +41,20 @@ body {
   display: block;
   margin: 0 0 10px 0;
 }
-.meme-image-div { position: relative; }
-.meme-image-div > img {
-  /* width: 80%; */
-  /* max-width: 500px; */
+.meme-image-div {
+  position: relative;
   max-height: 50vh;
+  max-width: 70vw;
+  margin: 0 auto;
+}
+.meme-image-div > img {
+  position: relative;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  max-height: 50vh;
+  max-width: 70vw;
 }
 #meme-text-top, #meme-text-bottom {
   position: absolute;
@@ -80,7 +89,8 @@ body {
 }
 @media screen and (min-width: 600px) {
   .ReactModal__Overlay {
-    left: 25% !important;
+    width: 70%;
+    left: 30% !important;
   }
   #meme-text-top, #meme-text-bottom {
     padding: 20px;
@@ -94,16 +104,15 @@ body {
 }
 
 #create-meme {
-  margin: 10px;
+  margin: 0;
   text-shadow: 1px 1px white, -1px -1px 10px white;
 }
 
 .entryGrid {
   display: grid;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   align-items: center;
-  height: 100px;
-  gap: 5px;
+  height: 90px;
   grid-template-areas:
     "label check"
     "input input"
@@ -143,7 +152,12 @@ body {
   margin: 0;
 }
 
-
+@media screen and (min-width: 600px) {
+  .entryGrid {
+    margin-bottom: 20px;
+    height: 100px;
+  }
+}
 
 
 
