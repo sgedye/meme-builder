@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/meme-builder/static/css/main.6d586876.chunk.css",
-    "main.js": "/meme-builder/static/js/main.761fc6cc.chunk.js",
-    "main.js.map": "/meme-builder/static/js/main.761fc6cc.chunk.js.map",
+    "main.css": "/meme-builder/static/css/main.44679951.chunk.css",
+    "main.js": "/meme-builder/static/js/main.3f957430.chunk.js",
+    "main.js.map": "/meme-builder/static/js/main.3f957430.chunk.js.map",
     "runtime-main.js": "/meme-builder/static/js/runtime-main.e85bb98b.js",
     "runtime-main.js.map": "/meme-builder/static/js/runtime-main.e85bb98b.js.map",
-    "static/js/2.401271a2.chunk.js": "/meme-builder/static/js/2.401271a2.chunk.js",
-    "static/js/2.401271a2.chunk.js.map": "/meme-builder/static/js/2.401271a2.chunk.js.map",
+    "static/js/2.088e9ce3.chunk.js": "/meme-builder/static/js/2.088e9ce3.chunk.js",
+    "static/js/2.088e9ce3.chunk.js.map": "/meme-builder/static/js/2.088e9ce3.chunk.js.map",
     "index.html": "/meme-builder/index.html",
-    "precache-manifest.0babd0f11e8ae6699ac368fd2a5353ef.js": "/meme-builder/precache-manifest.0babd0f11e8ae6699ac368fd2a5353ef.js",
+    "precache-manifest.95dceb030c79ac7fab96fecefea39ad1.js": "/meme-builder/precache-manifest.95dceb030c79ac7fab96fecefea39ad1.js",
     "service-worker.js": "/meme-builder/service-worker.js",
-    "static/css/main.6d586876.chunk.css.map": "/meme-builder/static/css/main.6d586876.chunk.css.map",
-    "static/js/2.401271a2.chunk.js.LICENSE.txt": "/meme-builder/static/js/2.401271a2.chunk.js.LICENSE.txt"
+    "static/css/main.44679951.chunk.css.map": "/meme-builder/static/css/main.44679951.chunk.css.map",
+    "static/js/2.088e9ce3.chunk.js.LICENSE.txt": "/meme-builder/static/js/2.088e9ce3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e85bb98b.js",
-    "static/js/2.401271a2.chunk.js",
-    "static/css/main.6d586876.chunk.css",
-    "static/js/main.761fc6cc.chunk.js"
+    "static/js/2.088e9ce3.chunk.js",
+    "static/css/main.44679951.chunk.css",
+    "static/js/main.3f957430.chunk.js"
   ]
 }
