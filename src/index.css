@@ -42,7 +42,11 @@ body {
   margin: 0 0 10px 0;
 }
 .meme-image-div { position: relative; }
-.meme-image-div > img { width: 80%; max-width: 500px; }
+.meme-image-div > img {
+  /* width: 80%; */
+  /* max-width: 500px; */
+  max-height: 50vh;
+}
 #meme-text-top, #meme-text-bottom {
   position: absolute;
   left: 10%;

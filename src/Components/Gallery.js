@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 
 import Image from './Image'
@@ -38,6 +38,24 @@ const Button = styled.button`
 
 function Gallery(props) {
   
+  const [galleryImages, setGalleryImages] = useState([])
+
+  useEffect(() => {
+    fetch('https://api.imgflip.com/get_memes').then(response => 
+      response.json().then(blob => {
+        const ids = [...Array(12)].map(entry => Math.floor(Math.random() * 100))
+        while ((new Set(ids)).size < 12) {
+          const tempId = Math.floor(Math.random() * 100)
+          if (!ids.includes(tempId)) {
+            ids.push(tempId)
+          }
+        }
+        const imgs = blob.data.memes.filter((value, index) => ids.includes(index))
+        setGalleryImages(imgs)
+      })
+    )
+  },[])
+
   const returnToGallery = () => {
     console.log(document.getElementById('memeToDownload'))
     document.getElementById("gallery-title").textContent = "Image Gallery"
@@ -46,27 +64,24 @@ function Gallery(props) {
     document.getElementById("memeToDownload").style.display = "none"
   }
 
-  const imageData = [
-    { id:1, src:'http://rtgphotography.com.au/img/galleries/cuba.jpg' },
-    { id:2, src:'http://rtgphotography.com.au/img/galleries/ethiopia.jpg' },
-    { id:3, src:'http://rtgphotography.com.au/img/galleries/madagascar.jpg' },
-    { id:4, src:'http://rtgphotography.com.au/img/galleries/landscapes.jpg' },
-    { id:5, src:'http://rtgphotography.com.au/img/galleries/portraits-1.jpg' },
-    { id:6, src:'http://rtgphotography.com.au/img/galleries/portraits-2.jpg' },
-    { id:7, src:'http://rtgphotography.com.au/img/galleries/black&whites.jpg' }
-  ]
-
-  const IMAGE_LIST = imageData.map(img => {
-    const imgId = 'img_' + img.id
-    const altTag = img.src.replace(/.*\/(\w+[-|&]?\w+)\.jpg/, (_, $1) => $1)
-    return (
-      <Image key={imgId} id={imgId} src={img.src} alt={altTag} onClick={() => props.imageClicked(img.src)} />
-    )
-  })
   return (
     <Container id="gallery">
       <Title id="gallery-title">Image Gallery</Title>
-      <Pictures id="gallery-body">{IMAGE_LIST}</Pictures>
+      <Pictures id="gallery-body">
+        {
+          galleryImages.map(item => {
+            return (
+              <Image
+                key={item.id}
+                id={item.id}
+                src={item.url}
+                alt={item.name}
+                onClick={() => props.imageClicked(item.url)}
+              />
+            )
+          })
+        }
+      </Pictures>
       <Canvas id="memeToDownload" width="600" height="400"></Canvas>
       <Button id="return-to-gallery" onClick={returnToGallery}>Return to Gallery</Button>
     </Container>
@@ -74,30 +89,3 @@ function Gallery(props) {
 }
 
 export default Gallery
-
-
-
-// import { createClient } from 'pexels';
-
-// All requests made with the client will be authenticated
-
-
-  // UNSECURE API call to get images 
-  /* 
-  const client = createClient(process.env.REACT_APP_PEXELS_API_KEY);
-  console.log(client)
-
-  console.log(process.env.REACT_APP_PEXELS_API_KEY)
-  client.photos.show({ id: 2014422 })
-    .then(photo => { console.log(photo) })
-  
-  
-  let x =client.photos.random()
-  const getX = () => console.log(x)
-  setInterval(() => {
-    getX()
-  }, 1000);
-  const query = 'Nature';
-  client.photos.search({ query, per_page: 1 })
-    .then(photos => { console.log(photos)});
-  */
