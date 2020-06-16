@@ -16,4 +16,4 @@ Meme Builder was created using:
 
 The code is stored here on GitHub (via Git) and the website is hosted on GitHub Pages.
 
-![Meme Builder](https://github.com/sgedye/meme-builder/meme-builder.png)
+![Meme Builder](https://github.com/sgedye/meme-builder/blob/master/meme-builder.png)
